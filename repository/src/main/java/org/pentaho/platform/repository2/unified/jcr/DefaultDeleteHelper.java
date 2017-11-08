@@ -346,7 +346,7 @@ public class DefaultDeleteHelper implements IDeleteHelper {
             trashFileNode );
     Date deletedDate = getDeletedDate( trashFileNode, pentahoJcrConstants );
     String originalParentFolderPath = getOriginalParentFolderPath( session, pentahoJcrConstants, trashFileNode, true );
-    return new RepositoryFile.Builder( deletedFile ).setDeletedDate( deletedDate ).setOriginalParentFolderPath(
+    return new RepositoryFile.Builder( deletedFile ).deletedDate( deletedDate ).originalParentFolderPath(
         originalParentFolderPath ).build();
   }
 

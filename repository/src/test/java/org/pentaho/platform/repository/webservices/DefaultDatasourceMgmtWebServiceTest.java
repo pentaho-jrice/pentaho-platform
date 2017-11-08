@@ -76,11 +76,11 @@ public class DefaultDatasourceMgmtWebServiceTest extends TestCase {
         .setAuthentication(
             new UsernamePasswordAuthenticationToken( MockUnifiedRepository.root().getName(), null,
                 new ArrayList<GrantedAuthority>() ) );
-    repository.createFolder( repository.getFile( "/etc" ).getId(), new RepositoryFile.Builder( FOLDER_PDI ).setFolder(
+    repository.createFolder( repository.getFile( "/etc" ).getId(), new RepositoryFile.Builder( FOLDER_PDI ).folder(
         true ).build(), new RepositoryFileAcl.Builder( MockUnifiedRepository.root() ).ace(
           MockUnifiedRepository.everyone(), READ, WRITE ).build(), null );
     repository.createFolder( repository.getFile( "/etc/pdi" ).getId(), new RepositoryFile.Builder( FOLDER_DATABASES )
-        .setFolder( true ).build(), null );
+        .folder( true ).build(), null );
     SecurityContextHolder.getContext().setAuthentication(
         new UsernamePasswordAuthenticationToken( EXP_LOGIN, null, new ArrayList<GrantedAuthority>() ) );
 

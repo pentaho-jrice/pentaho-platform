@@ -88,8 +88,8 @@ public class RepositoryFileTest {
     assertEquals( 0, file.compareTo( file ) );
 
     RepositoryFile.Builder builder = new RepositoryFile.Builder( file );
-    builder.setTitle( "diffTitle" );
-    builder.setId( null );
+    builder.title( "diffTitle" );
+    builder.id( null );
     assertNotEquals( 0, file.compareTo( builder.build() ) );
 
     assertNotEquals( 29791, dupFile.hashCode() );
@@ -119,11 +119,11 @@ public class RepositoryFileTest {
 
     RepositoryFile.Builder builder = new RepositoryFile.Builder( file );
     // equals version ID
-    builder.setVersionId( "diffVersionId" );
+    builder.versionId( "diffVersionId" );
     RepositoryFile newFile = builder.build();
     assertFalse( newFile.equals( file ) );
 
-    builder.setVersionId( null );
+    builder.versionId( null );
     newFile = builder.build();
     assertFalse( newFile.equals( file ) );
 
@@ -132,11 +132,11 @@ public class RepositoryFileTest {
     assertTrue( newFile.equals( secondNewFile ) );
 
     // equals locale
-    builder.setLocale( "diffLocale" );
+    builder.locale( "diffLocale" );
     newFile = builder.build();
     assertFalse( newFile.equals( file ) );
 
-    builder.setLocale( null );
+    builder.locale( null );
     newFile = builder.build();
     assertFalse( newFile.equals( file ) );
 
@@ -144,18 +144,18 @@ public class RepositoryFileTest {
     assertTrue( newFile.equals( secondNewFile ) );
 
     // equals ID
-    builder.setId( "diffId" );
+    builder.id( "diffId" );
     newFile = builder.build();
     assertFalse( newFile.equals( file ) );
 
-    builder.setId( null );
+    builder.id( null );
     newFile = builder.build();
     assertFalse( newFile.equals( file ) );
 
     secondNewFile = builder.build();
     assertTrue( newFile.equals( secondNewFile ) );
 
-    builder.setPath( "diffPath" );
+    builder.path( "diffPath" );
     secondNewFile = builder.build();
     assertFalse( newFile.equals( secondNewFile ) );
   }
@@ -170,14 +170,14 @@ public class RepositoryFileTest {
     assertTrue( newFile.getLocalePropertiesMap().containsKey( RepositoryFile.DEFAULT_LOCALE ) );
     assertNotNull( newFile.getLocalePropertiesMap().get( RepositoryFile.DEFAULT_LOCALE ) );
 
-    builder.setLocaleProperties( null, new Properties() );
+    builder.localeProperties( null, new Properties() );
     newFile = builder.build();
     assertEquals( 2, newFile.getLocalePropertiesMap().size() );
     assertNotNull( newFile.getLocalePropertiesMap().get( null ) );
 
     String localTitle = "newLocalTitle";
     String newTitle = "newTitle";
-    builder.setTitle( localTitle, newTitle );
+    builder.title( localTitle, newTitle );
     newFile = builder.build();
     assertTrue( newFile.getLocalePropertiesMap().containsKey( localTitle ) );
     assertEquals( newTitle, newFile.getLocalePropertiesMap().get( localTitle ).getProperty( RepositoryFile.TITLE ) );
@@ -185,7 +185,7 @@ public class RepositoryFileTest {
 
     String localDesc = "newLocalDesc";
     String newDesc = "newDesc";
-    builder.setDescription( localDesc, newDesc );
+    builder.description( localDesc, newDesc );
     newFile = builder.build();
     assertTrue( newFile.getLocalePropertiesMap().containsKey( localDesc ) );
     assertEquals( newDesc, newFile.getLocalePropertiesMap().get( localDesc ).getProperty( RepositoryFile.DESCRIPTION ) );
@@ -197,17 +197,17 @@ public class RepositoryFileTest {
     assertEquals( ID, newFile.getId() );
 
     String newString = "newString";
-    builder.setName( newString );
+    builder.name( newString );
     newFile = builder.build();
     assertEquals( newString, newFile.getName() );
 
     // Test that Default Locale gets set
-    builder.setLocalePropertiesMap( new HashMap<String, Properties>() );
+    builder.localePropertiesMap( new HashMap<String, Properties>() );
     newFile = builder.build();
     assertTrue( newFile.getLocalePropertiesMap().containsKey( RepositoryFile.DEFAULT_LOCALE ) );
 
-    builder.setLocalePropertiesMap( null );
-    builder.setTitle( LOCALE, "newTitle" );
+    builder.localePropertiesMap( null );
+    builder.title( LOCALE, "newTitle" );
     newFile = builder.build();
     assertTrue( newFile.getLocalePropertiesMap().containsKey( RepositoryFile.DEFAULT_LOCALE ) );
 
@@ -239,19 +239,19 @@ public class RepositoryFileTest {
     builder = new RepositoryFile.Builder( file );
     newFile = builder.build();
     assertFalse( newFile.getLocalePropertiesMap().containsKey( LOCALE ) );
-    builder.setTitle( LOCALE, TITLE );
+    builder.title( LOCALE, TITLE );
     newFile = builder.build();
     assertEquals( TITLE, newFile.getLocalePropertiesMap().get( LOCALE ).getProperty( RepositoryFile.TITLE ) );
 
-    builder.setTitle( LOCALE, newTitle );
+    builder.title( LOCALE, newTitle );
     newFile = builder.build();
     assertEquals( newTitle, newFile.getLocalePropertiesMap().get( LOCALE ).getProperty( RepositoryFile.TITLE ) );
 
-    builder.setDescription( LOCALE, DESCRIPTION );
+    builder.description( LOCALE, DESCRIPTION );
     newFile = builder.build();
     assertEquals( DESCRIPTION, newFile.getLocalePropertiesMap().get( LOCALE ).getProperty( RepositoryFile.DESCRIPTION ) );
 
-    builder.setDescription( LOCALE, newDesc );
+    builder.description( LOCALE, newDesc );
     newFile = builder.build();
     assertEquals( newDesc, newFile.getLocalePropertiesMap().get( LOCALE ).getProperty( RepositoryFile.DESCRIPTION ) );
   }

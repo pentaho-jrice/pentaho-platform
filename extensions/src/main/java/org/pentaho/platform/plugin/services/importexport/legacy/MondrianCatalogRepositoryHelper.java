@@ -116,7 +116,7 @@ public class MondrianCatalogRepositoryHelper {
           repository.getFile( ETC_MONDRIAN_JCR_FOLDER + RepositoryFile.SEPARATOR + catalogName );
         if ( catalogFolder.isHidden() != schemaFile.isHidden() ) {
           RepositoryFile unhiddenFolder =
-            ( new RepositoryFile.Builder( catalogFolder ) ).setHidden( schemaFile.isHidden() ).build();
+            ( new RepositoryFile.Builder( catalogFolder ) ).hidden( schemaFile.isHidden() ).build();
           repository.updateFolder( unhiddenFolder, "" );
         }
       }
@@ -157,7 +157,7 @@ public class MondrianCatalogRepositoryHelper {
           repository.createFolder(
               repository.getFile( RepositoryFile.SEPARATOR + "etc" ).getId(),
               new RepositoryFile.Builder( "olap-servers" )
-                  .setFolder( true )
+                  .folder( true )
                   .build(),
               "Creating olap-servers directory in /etc"
           );
@@ -201,7 +201,7 @@ public class MondrianCatalogRepositoryHelper {
           repository.createFolder(
               etcOlapServers.getId(),
               new RepositoryFile.Builder( name )
-                  .setFolder( true )
+                  .folder( true )
                   .build(),
               "Creating entry for olap server: "
                   + name
@@ -493,7 +493,7 @@ public class MondrianCatalogRepositoryHelper {
     if ( catalog == null ) {
       RepositoryFile etcMondrian = repository.getFile( ETC_MONDRIAN_JCR_FOLDER );
       catalog =
-          repository.createFolder( etcMondrian.getId(), new RepositoryFile.Builder( catalogName ).setFolder( true )
+          repository.createFolder( etcMondrian.getId(), new RepositoryFile.Builder( catalogName ).folder( true )
               .build(), "" );
     }
     createDatasourceMetadata( catalog, datasourceInfo );
